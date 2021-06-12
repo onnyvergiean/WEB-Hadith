@@ -9,30 +9,46 @@ const nextBtnHadith = document.querySelector('#nextHadith');
 const backBtnHadith = document.querySelector('#backHadith');
 
 const showHadith= async()=>{
-    const hadith= await fetchHadith();
-    const newHadith = document.createElement('newHadith');
-    newHadith.append(hadith);
-    isiHadith.append(newHadith);   
+    try{
+        const hadith= await fetchHadith();
+        const newHadith = document.createElement('newHadith');
+        newHadith.append(hadith);
+        isiHadith.append(newHadith);  
+    }catch(e){
+        return e;
+    } 
 }
 
 const fetchHadith =async() =>{
-    const res = await axios.get('https://api.hadith.sutanlab.id/books/' + hadithId + "/" + page)
-    const hadithContent =  [res.data.data.contents.arab, res.data.data.contents.id, res.data.data.contents.number]
-    return hadithContent
+   try{
+        const res = await axios.get('https://api.hadith.sutanlab.id/books/' + hadithId + "/" + page)
+        const hadithContent =  [res.data.data.contents.arab, res.data.data.contents.id, res.data.data.contents.number]
+        return hadithContent
+   }catch(e){
+       return e
+   }
 }
 
 const nextHadith = async()=>{
-    page+=1;
-    const nextHadithContent = window.history.replaceState(null, null, "?" + hadithId + "|" + page);
-    location.reload();
-    return nextHadithContent
+    try{
+        page+=1;
+        const nextHadithContent = window.history.replaceState(null, null, "?" + hadithId + "|" + page);
+        location.reload();
+        return nextHadithContent
+    }catch(e){
+        return e
+    }
 }
 
 const backHadith = async () =>{
-    page-=1;
-    const backHadithContent = window.history.replaceState(null, null, "?" + hadithId + "|" + page);
-    location.reload();
-    return backHadithContent
+    try{
+        page-=1;
+        const backHadithContent = window.history.replaceState(null, null, "?" + hadithId + "|" + page);
+        location.reload();
+        return backHadithContent
+    }catch(e){
+        return e
+    }
 }
 
 
