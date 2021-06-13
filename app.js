@@ -1,4 +1,3 @@
-
 let bodyHadith = document.querySelector('.body-hadith')
 
 // fetch hadiths list from API
