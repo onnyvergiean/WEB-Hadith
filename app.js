@@ -1,5 +1,8 @@
-let bodyHadith = document.querySelector('.body-hadith')
-
+let bodyHadith = document.querySelector('.body-hadith');
+let sortDataAsc = document.querySelector('#sortDataAsc');
+let sortDataDesc = document.querySelector('#sortDataDesc');
+let sortNamaAsc = document.querySelector('#sortNamaAsc');
+let sortNamaDesc = document.querySelector('#sortNamaDesc');
 // fetch hadiths list from API
 const fetchHadithsList = async () => {
     try {
@@ -34,6 +37,125 @@ const showHadiths = async () => {
     }
 }
 
+const shortHadithAsc = async()=>{
+   try{
+    let replace=''
+    let dataArray =[]
+    const data = await fetchHadithsList()
+    data.forEach(data =>{
+        dataArray.push([data.available,data.name,data.id])
+    });
+    
+    let sortedArrayAsc = dataArray.sort(function(a, b) {
+    return  a[0] - b[0];
+    });
+    
+    for(let i=0;i<=8;i++){
+         replace += `
+            <div class="col-2 offset-1 ">
+                <a href="hadith.html?${sortedArrayAsc[i][2]}|1">
+                    <button id="btnShowHadith">
+                        ${sortedArrayAsc[i][1]} Dengan Jumlah hadist ${sortedArrayAsc[i][0]}
+                    </button>
+                </a>
+            </div>`
+    }
+     bodyHadith.innerHTML = replace
+   }catch(e){
+       return e
+   }
+}
+
+const shortHadithDesc = async()=>{
+   try{
+    let replace=''
+    let dataArray =[]
+    const data = await fetchHadithsList()
+    data.forEach(data =>{
+        dataArray.push([data.available,data.name,data.id])
+    });
+    
+    let sortedArrayDesc = dataArray.sort(function(a, b) {
+    return  b[0] - a[0];
+    });
+    
+    for(let i=0;i<=8;i++){
+         replace += `
+            <div class="col-2 offset-1 ">
+                <a href="hadith.html?${sortedArrayDesc[i][2]}|1">
+                    <button id="btnShowHadith">
+                        ${sortedArrayDesc[i][1]} Dengan Jumlah hadist ${sortedArrayDesc[i][0]}
+                    </button>
+                </a>
+            </div>`
+    }
+     bodyHadith.innerHTML = replace
+   }catch(e){
+       return e
+   }
+
+}
+
+const shortNamaHadithAsc = async()=>{
+    try{
+    let replace=''
+    let dataArray =[]
+    const data = await fetchHadithsList()
+    data.forEach(data =>{
+        dataArray.push([data.name,data.available,data.id])
+    });
+    
+    let sortedArrayAsc = dataArray.sort(function(a, b) {
+    return  a[0] - b[0];
+    });
+    
+    for(let i=0;i<=8;i++){
+         replace += `
+            <div class="col-2 offset-1 ">
+                <a href="hadith.html?${sortedArrayAsc[i][2]}|1">
+                    <button id="btnShowHadith">
+                        ${sortedArrayAsc[i][0]} Dengan Jumlah hadist ${sortedArrayAsc[i][1]}
+                    </button>
+                </a>
+            </div>`
+    }
+     bodyHadith.innerHTML = replace
+   }catch(e){
+       return e
+   }
+}
+
+const shortNamaHadithDesc = async()=>{
+    try{
+    let replace=''
+    let dataArray =[]
+    const data = await fetchHadithsList()
+    data.forEach(data =>{
+        dataArray.push([data.name,data.available,data.id])
+    });
+    
+    let sortedArrayDesc = dataArray.sort(function(a, b) {
+    return  b[0] - a[0];
+    });
+    
+    for(let i=0;i<=8;i++){
+         replace += `
+            <div class="col-2 offset-1 ">
+                <a href="hadith.html?${sortedArrayDesc[i][2]}|1">
+                    <button id="btnShowHadith">
+                        ${sortedArrayDesc[i][0]} Dengan Jumlah hadist ${sortedArrayDesc[i][1]}
+                    </button>
+                </a>
+            </div>`
+    }
+     bodyHadith.innerHTML = replace
+   }catch(e){
+       return e
+   }
+}
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
     bodyHadith.innerHTML = `
         <h1>Loading Data...</h1>
@@ -41,4 +163,12 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         showHadiths()
     }, 1000);
+
+    sortDataAsc.addEventListener('click', shortHadithAsc);
+    sortDataDesc.addEventListener('click', shortHadithDesc);
+    sortNamaAsc.addEventListener('click', shortNamaHadithAsc);
+    sortNamaDesc.addEventListener('click',shortNamaHadithDesc);
 })
+
+ 
+ 
