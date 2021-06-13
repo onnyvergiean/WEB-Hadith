@@ -15,7 +15,7 @@ const showHadith = async () => {
         isiHadith.innerHTML = `
             <div>
                 <h2>${hadith.name}</h2>
-                <h3>${hadith.num}</h3>
+                <h3>Hadis Nomor ${hadith.num}</h3>
                 <h5>${hadith.arab}</h5>
                 <h5>${hadith.idn}</h5>
             </div>
@@ -33,7 +33,7 @@ const fetchHadith = async () => {
         return {
             "arab": res.data.data.contents.arab,
             "idn": res.data.data.contents.id,
-            "num": `Hadis Nomor ${res.data.data.contents.number}`,
+            "num": res.data.data.contents.number,
             "name": res.data.data.name
         }
 
@@ -71,8 +71,6 @@ const backHadith = async () => {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-
-
     // disable back button if current page is 1
     if (page == 1) {
         backBtnHadith.disabled = true
