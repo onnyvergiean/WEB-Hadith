@@ -1,7 +1,8 @@
 
 let bodyHadith = document.querySelector('.body-hadith')
 
-const fetchHadiths = async () => {
+// fetch hadiths list from API
+const fetchHadithsList = async () => {
     try {
         const res = await axios.get('https://api.hadith.sutanlab.id/books/')
         return res.data.data
@@ -10,10 +11,12 @@ const fetchHadiths = async () => {
     }
 }
 
+
+// show data to page
 const showHadiths = async () => {
     try {
         let el = ''
-        const data = await fetchHadiths()
+        const data = await fetchHadithsList()
         data.forEach(data => {
             el += `
             <div class="col-2 offset-1 ">
