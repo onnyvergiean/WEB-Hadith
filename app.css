@@ -3,5 +3,10 @@ body{
 }
 
 button{
-    cursor: pointer;
+        cursor: pointer;
+}
+.container button{
+
+    width: 150px;
+    height: 120px;
 }
