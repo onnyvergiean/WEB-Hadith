@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> fac508168711866aef501267d489d42b1dfe2d5c
 let param = location.search.substring(1);
 let splitter = param.split("|");
 let hadithId = splitter[0];
@@ -15,8 +19,13 @@ const showHadith = async () => {
         isiHadith.innerHTML = `
             <div>
                 <h6>${hadith.num}</h3>
+<<<<<<< HEAD
                 <h5>${hadith.arab}</h5>
                 <h5>${hadith.idn}</h5>
+=======
+                <h5>${hadith.arab}></h5>
+                <h5>${hadith.idn}></h5>
+>>>>>>> fac508168711866aef501267d489d42b1dfe2d5c
             </div>
         `;
     } catch (e) {

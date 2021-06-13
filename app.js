@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> fac508168711866aef501267d489d42b1dfe2d5c
 let bodyHadith = document.querySelector('.body-hadith')
 
 // fetch hadiths list from API
