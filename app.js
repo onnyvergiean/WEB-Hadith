@@ -26,7 +26,7 @@ const showHadiths = async () => {
 
         document.querySelector('.body-hadith').innerHTML = el
     } catch (error) {
-        
+        return 'Maaf terjadi kesalahan ketika mengambil data. Silahkan refresh halaman kembali'
     }
 }
 
