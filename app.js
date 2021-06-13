@@ -1,10 +1,12 @@
 
+let bodyHadith = document.querySelector('.body-hadith')
+
 const fetchHadiths = async () => {
     try {
         const res = await axios.get('https://api.hadith.sutanlab.id/books/')
         return res.data.data
-    } catch (error) {
-        return error
+    } catch (e) {
+        return e
     }
 }
 
@@ -24,10 +26,17 @@ const showHadiths = async () => {
             
         });
 
-        document.querySelector('.body-hadith').innerHTML = el
-    } catch (error) {
+        bodyHadith.innerHTML = el
+    } catch (e) {
         return 'Maaf terjadi kesalahan ketika mengambil data. Silahkan refresh halaman kembali'
     }
 }
 
-showHadiths()
+document.addEventListener('DOMContentLoaded', () => {
+    bodyHadith.innerHTML = `
+        <h1>Loading Data...</h1>
+    `
+    setTimeout(() => {
+        showHadiths()
+    }, 1000);
+})

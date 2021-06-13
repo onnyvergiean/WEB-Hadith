@@ -11,9 +11,7 @@ const backBtnHadith = document.querySelector('#backHadith');
 const showHadith= async()=>{
     try{
         const hadith= await fetchHadith();
-        const newHadith = document.createElement('newHadith');
-        newHadith.append(hadith);
-        isiHadith.append(newHadith);  
+        isiHadith.innerHTML = hadith;  
     }catch(e){
         return e;
     } 
@@ -22,8 +20,8 @@ const showHadith= async()=>{
 const fetchHadith =async() =>{
    try{
         const res = await axios.get('https://api.hadith.sutanlab.id/books/' + hadithId + "/" + page)
-        const hadithContent =  [res.data.data.contents.arab, res.data.data.contents.id, res.data.data.contents.number]
-        return hadithContent
+        return [res.data.data.contents.arab, res.data.data.contents.id, res.data.data.contents.number]
+        
    }catch(e){
        return e
    }
@@ -51,11 +49,18 @@ const backHadith = async () =>{
     }
 }
 
-
-showHadith();
-nextBtnHadith.addEventListener('click', nextHadith)
-backBtnHadith.addEventListener('click', backHadith)
-
 if(page == 1) {
     backBtnHadith.disabled = true
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    isiHadith.innerHTML = `
+        <h1>Loading Data...</h1>
+    `
+    setTimeout(() => {
+        showHadith()
+    }, 1000);
+
+    nextBtnHadith.addEventListener('click', nextHadith)
+    backBtnHadith.addEventListener('click', backHadith)
+})
