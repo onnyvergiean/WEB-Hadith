@@ -55,3 +55,7 @@ const backHadith = async () =>{
 showHadith();
 nextBtnHadith.addEventListener('click', nextHadith)
 backBtnHadith.addEventListener('click', backHadith)
+
+if(page == 1) {
+    backBtnHadith.disabled = true
+}
