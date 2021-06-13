@@ -1,8 +1,6 @@
 let bodyHadith = document.querySelector('.body-hadith');
-let sortDataAsc = document.querySelector('#sortDataAsc');
-let sortDataDesc = document.querySelector('#sortDataDesc');
-let sortNamaAsc = document.querySelector('#sortNamaAsc');
-let sortNamaDesc = document.querySelector('#sortNamaDesc');
+let sortData = document.querySelector('.form-select');
+
 // fetch hadiths list from API
 const fetchHadithsList = async () => {
     try {
@@ -164,10 +162,17 @@ document.addEventListener('DOMContentLoaded', () => {
         showHadiths()
     }, 1000);
 
-    sortDataAsc.addEventListener('click', shortHadithAsc);
-    sortDataDesc.addEventListener('click', shortHadithDesc);
-    sortNamaAsc.addEventListener('click', shortNamaHadithAsc);
-    sortNamaDesc.addEventListener('click',shortNamaHadithDesc);
+  sortData.addEventListener('change', (event) => {
+      if(event.target.value == "sortDataAsc"){
+        shortHadithAsc()
+      }else if(event.target.value == "sortDataDesc"){
+        shortHadithDesc()
+      }else if(event.target.value == "sortNamaAsc"){
+        shortNamaHadithAsc()
+      }else if(event.target.value == "sortNamaDesc"){
+        shortNamaHadithDesc()
+      }
+});
 })
 
  
