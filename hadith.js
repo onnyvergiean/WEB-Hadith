@@ -14,7 +14,8 @@ const showHadith = async () => {
         const hadith = await fetchHadith();
         isiHadith.innerHTML = `
             <div>
-                <h6>${hadith.num}</h3>
+                <h2>${hadith.name}</h2>
+                <h3>${hadith.num}</h3>
                 <h5>${hadith.arab}</h5>
                 <h5>${hadith.idn}</h5>
             </div>
@@ -32,7 +33,8 @@ const fetchHadith = async () => {
         return {
             "arab": res.data.data.contents.arab,
             "idn": res.data.data.contents.id,
-            "num": res.data.data.contents.number
+            "num": `Hadis Nomor ${res.data.data.contents.number}`,
+            "name": res.data.data.name
         }
 
     } catch (e) {
