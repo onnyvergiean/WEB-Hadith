@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     // disable back button if current page is 1
-    if (page == 1) {
+    if (page <= 1) {
         backBtnHadith.disabled = true
     }
 
