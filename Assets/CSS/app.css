@@ -21,6 +21,10 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  color: var(--text-color-hover);
+}
+
 .bg, .header {
   min-height: 70px;
   width: 100%;

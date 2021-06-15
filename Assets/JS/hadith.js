@@ -19,19 +19,21 @@ const showHadith = async (data) => {
 
         namaHadith.innerHTML = data.name
         nomorHadith.innerHTML = `
-        <h5>Nomor Hadith</h5>
-        <h3>${data.num}</h3>`
+            <h5>Nomor Hadith</h5>
+            <h3>${data.num}</h3>
+        `
+
         detailHadith.innerHTML = (data.found) ?
-          `
+        `
             <div>
-            <p id="arabic-hadith">
-                ${data.arab}
-            </p>
-            <hr />
-            <p id="idn-hadith">'
-            ${data.idn}
-            </p>
-          </div>
+                <p id="arabic-hadith">
+                    ${data.arab}
+                </p>
+                <hr />
+                <p id="idn-hadith">'
+                    ${data.idn}
+                </p>
+            </div>
         ` : `<h1>Hadith ${data.name} nomor ${data.num} tidak ditemukan</h1>` 
     } catch (e) {
         return e;
