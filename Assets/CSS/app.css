@@ -1,0 +1,78 @@
+body {
+  background: #e6eceb;
+}
+.bg,
+.header {
+  height: 70px;
+  width: 100%;
+  background-color: #1a645b;
+}
+.card-hadith {
+  width: 100%;
+  min-height: 200px;
+  background-color: white;
+  text-align: center;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-hadith i {
+  font-size: 40px;
+}
+.header {
+  margin-top: 20px;
+  border-radius: 10px;
+  align-items: center;
+  padding: 0 20px;
+  color: white;
+}
+.navigator .btn {
+  width: 100%;
+}
+
+#arabic-hadith {
+  color: #222726;
+  font: 25px system-ui, -apple-system;
+  margin: 0px 0px 16px;
+  padding: 30px 0px;
+}
+
+#idn-hadith {
+  color: #222726;
+  font: 16px system-ui, -apple-system;
+  margin: 0px 0px 16px;
+  padding: 30px opx;
+}
+
+.col-12 {
+  color: #222726;
+  padding: 0px 12px;
+}
+
+hr {
+  background: #222726;
+  margin: 16px 0px;
+}
+
+.border.detail-body {
+  padding: 20px;
+}
+
+.card-hadith a{
+  text-decoration: none;
+  color: #222726;
+}
+.fas{
+  color: #222726;
+} 
+
+#nama-hadith{
+  margin-top: 4px;
+  color: #222726;
+  text-decoration: none;
+}
+
+a{
+  text-decoration: none;
+}
