@@ -18,23 +18,22 @@ const showHadiths = async () => {
         let el = ''
         const data = await fetchHadithsList()
         data.forEach(data => {
-            el +=
-            
-    `<div class="col-3 my-3">
-    <a href="hadith.html?${data.id}|1">
-        <div class="card-hadith">
-          <div>
-            <i class="fas fa-quran mb-3"></i>
-                    <h4 id="btnShowHadith">
-                        ${data.name} 
-                    </h4>
-                    <p>
-                    Dengan Jumlah ${data.available} Data
-                    </p>
+            el += `
+            <div class="col-12 col-md-3 my-2">
+                <a href="hadith.html?${data.id}|1">
+                    <div class="card-hadith">
+                        <div>
+                            <i class="fas fa-quran mb-3"></i>
+                            <h4 id="btnShowHadith">
+                                ${data.name} 
+                            </h4>
+                            <p>
+                                Dengan Jumlah ${data.available} Data
+                            </p>
+                        </div>
                     </div>
-                    </div>
-                    </a>
-      </div>`
+                </a>
+            </div>`
         });
 
         bodyHadith.innerHTML = el
