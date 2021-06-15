@@ -23,7 +23,9 @@ const showHadiths = async () => {
                 <a href="hadith.html?${data.id}|1">
                     <div class="card-hadith">
                         <div>
-                            <i class="fas fa-quran mb-3"></i>
+                            <span class="material-icons-outlined">
+                                auto_stories
+                            </span>
                             <h4 id="btnShowHadith">
                                 ${data.name} 
                             </h4>
