@@ -1,12 +1,32 @@
-body {
-  background: #e6eceb;
+:root {
+  --text-color: #e6eceb;
+  --bg-color: #e6eceb;
+  --bg-switch: #e6eceb;
+  --switch-color: white;
+  --card-color: white;
 }
-.bg,
-.header {
-  height: 70px;
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+.bg, .header {
+  color: #e6eceb;
+  min-height: 70px;
   width: 100%;
   background-color: #1a645b;
 }
+
+.bg .navbar-custom {
+  display: flex;
+  font-weight: bold;
+}
+
+.navbar span {
+  font-size: 30px;
+}
+
 .card-hadith {
   width: 100%;
   min-height: 200px;

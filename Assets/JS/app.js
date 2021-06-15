@@ -21,19 +21,19 @@ const showHadiths = async () => {
             el +=
             
     `<div class="col-3 my-3">
+    <a href="hadith.html?${data.id}|1">
         <div class="card-hadith">
           <div>
-            <i class="fas fa-quran"></i>
-             <a href="hadith.html?${data.id}|1">
+            <i class="fas fa-quran mb-3"></i>
                     <h4 id="btnShowHadith">
                         ${data.name} 
                     </h4>
                     <p>
-                    Dengan Jumlah hadist ${data.available}
+                    Dengan Jumlah ${data.available} Data
                     </p>
-                </a>
-          </div>
-        </div>
+                    </div>
+                    </div>
+                    </a>
       </div>`
         });
 
