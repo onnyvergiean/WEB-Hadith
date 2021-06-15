@@ -1,18 +1,27 @@
 :root {
-  --text-color: #e6eceb;
+  --text-color: #222726;
+  --text-color-hover: #1a645b;
   --bg-color: #e6eceb;
   --bg-switch: #e6eceb;
   --switch-color: white;
   --card-color: white;
+  --transition-duration: .5s;
+  --transition-property: background, color;
 }
 
 body {
   background: var(--bg-color);
   color: var(--text-color);
+  transition-property: var(--transition-property);
+  transition-duration: var(--transition-duration);
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
 }
 
 .bg, .header {
-  color: #e6eceb;
   min-height: 70px;
   width: 100%;
   background-color: #1a645b;
@@ -21,84 +30,70 @@ body {
 .bg .navbar-custom {
   display: flex;
   font-weight: bold;
+  color: white;
 }
 
-.navbar span {
+.navbar .navbar-custom span {
   font-size: 30px;
+}
+
+.col-3 a:hover {
+  color: var(--text-color-hover);
 }
 
 .card-hadith {
   width: 100%;
   min-height: 200px;
-  background-color: white;
+  background-color: var(--card-color);
   text-align: center;
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .card-hadith i {
   font-size: 40px;
 }
+
 .header {
   margin-top: 20px;
   border-radius: 10px;
   align-items: center;
   padding: 0 20px;
-  color: white;
+  font-size: 25px;
 }
+
 .navigator .btn {
   width: 100%;
+  height: 50px;
 }
 
 #arabic-hadith {
-  color: #222726;
+  color: var(--text-color);
   font: 25px system-ui, -apple-system;
   margin: 0px 0px 16px;
   padding: 30px 0px;
 }
 
 #idn-hadith {
-  color: #222726;
+  color: var(--text-color);
   font: 16px system-ui, -apple-system;
   margin: 0px 0px 16px;
   padding: 30px opx;
 }
 
-.col-12 {
-  color: #222726;
-  padding: 0px 12px;
-}
-
-hr {
-  background: #222726;
-  margin: 16px 0px;
-}
-
-.border.detail-body {
+.detail-hadith {
   padding: 20px;
 }
 
-.card-hadith a {
-  text-decoration: none;
-  color: #222726;
-}
-.fas {
-  color: #222726;
+.border {
+  color: var(--text-color);
 }
 
 #nama-hadith {
-  margin-top: 4px;
-  color: #222726;
+  color: var(--text-color);
   text-decoration: none;
-}
-
-a {
-  text-decoration: none;
-}
-
-.d-flex {
-  justify-content: flex-end;
 }
 
 .dark-mode-switch:after {
