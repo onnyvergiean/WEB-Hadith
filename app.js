@@ -35,7 +35,8 @@ const showHadiths = async () => {
     }
 }
 
-const shortHadithAsc = async()=>{
+//function sort Hadith Number Ascending
+const sortHadithAsc = async()=>{
    try{
     let replace=''
     let dataArray =[]
@@ -64,7 +65,8 @@ const shortHadithAsc = async()=>{
    }
 }
 
-const shortHadithDesc = async()=>{
+//function sort Hadith Number Descending
+const sortHadithDesc = async()=>{
    try{
     let replace=''
     let dataArray =[]
@@ -94,7 +96,8 @@ const shortHadithDesc = async()=>{
 
 }
 
-const shortNamaHadithAsc = async()=>{
+//function sort Hadith Name Ascending
+const sortNamaHadithAsc = async()=>{
     try{
     let replace=''
     let dataArray =[]
@@ -102,17 +105,18 @@ const shortNamaHadithAsc = async()=>{
     data.forEach(data =>{
         dataArray.push([data.name,data.available,data.id])
     });
+
     
-    let sortedArrayAsc = dataArray.sort(function(a, b) {
-    return  a[0] - b[0];
+    dataArray.sort(function(a, b) {
+    return a === b ? 0 : a < b ? -1 : 1;
     });
-    
+
     for(let i=0;i<=8;i++){
          replace += `
             <div class="col-2 offset-1 ">
-                <a href="hadith.html?${sortedArrayAsc[i][2]}|1">
+                <a href="hadith.html?${dataArray[i][2]}|1">
                     <button id="btnShowHadith">
-                        ${sortedArrayAsc[i][0]} Dengan Jumlah hadist ${sortedArrayAsc[i][1]}
+                        ${dataArray[i][0]} Dengan Jumlah hadist ${dataArray[i][1]}
                     </button>
                 </a>
             </div>`
@@ -123,7 +127,8 @@ const shortNamaHadithAsc = async()=>{
    }
 }
 
-const shortNamaHadithDesc = async()=>{
+//function sort Hadith Nae Descending
+const sortNamaHadithDesc = async()=>{
     try{
     let replace=''
     let dataArray =[]
@@ -131,17 +136,17 @@ const shortNamaHadithDesc = async()=>{
     data.forEach(data =>{
         dataArray.push([data.name,data.available,data.id])
     });
-    
-    let sortedArrayDesc = dataArray.sort(function(a, b) {
-    return  b[0] - a[0];
+
+    dataArray.sort(function(a, b) {
+    return b === a ? 0 : b < a ? -1 : 1;
     });
-    
+
     for(let i=0;i<=8;i++){
          replace += `
             <div class="col-2 offset-1 ">
-                <a href="hadith.html?${sortedArrayDesc[i][2]}|1">
+                <a href="hadith.html?${dataArray[i][2]}|1">
                     <button id="btnShowHadith">
-                        ${sortedArrayDesc[i][0]} Dengan Jumlah hadist ${sortedArrayDesc[i][1]}
+                        ${dataArray[i][0]} Dengan Jumlah hadist ${dataArray[i][1]}
                     </button>
                 </a>
             </div>`
@@ -164,13 +169,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   sortData.addEventListener('change', (event) => {
       if(event.target.value == "sortDataAsc"){
-        shortHadithAsc()
+        sortHadithAsc()
       }else if(event.target.value == "sortDataDesc"){
-        shortHadithDesc()
+        sortHadithDesc()
       }else if(event.target.value == "sortNamaAsc"){
-        shortNamaHadithAsc()
+        sortNamaHadithAsc()
       }else if(event.target.value == "sortNamaDesc"){
-        shortNamaHadithDesc()
+        sortNamaHadithDesc()
       }
 });
 })
