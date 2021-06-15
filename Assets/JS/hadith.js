@@ -19,7 +19,7 @@ const showHadith = async (data) => {
 
         namaHadith.innerHTML = data.name
         nomorHadith.innerHTML = `
-        <h3>Nomor Hadith</h3>
+        <h5>Nomor Hadith</h5>
         <h3>${data.num}</h3>`
         detailHadith.innerHTML = (data.found) ?
           `
