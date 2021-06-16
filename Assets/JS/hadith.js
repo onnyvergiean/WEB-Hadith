@@ -66,7 +66,7 @@ const showHadith = (data) => {
 // fetch data from API
 const fetchHadith = async () => {
     try {
-        // const res = await axios.get('https://api.hadith.sutanlab.id/books/' + hadithId + "/" + page)
+        const res = await axios.get('https://api.hadith.sutanlab.id/books/' + hadithId + "/" + page)
         console.log(res)
 
         if (res.data.data.contents) {
