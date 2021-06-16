@@ -9,6 +9,7 @@ const nextBtnHadith = document.querySelector('#nextHadith');
 const backBtnHadith = document.querySelector('#backHadith');
 const namaHadith = document.querySelector('#nama-hadith')
 const nomorHadith = document.querySelector('#no-hadith')
+const title = document.querySelector('title')
 
 
 // show data to page
@@ -20,6 +21,7 @@ const showHadith = (data) => {
             <h5>Hadith Nomor</h5>
             <h3>${data.num}</h3>
         `
+        title.innerText = `${data.name} - Hadith No ${data.num}`
 
         if (data.found) {
             detailHadith.innerHTML = `
