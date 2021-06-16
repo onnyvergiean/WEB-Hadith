@@ -23,7 +23,7 @@ const showHadith = (data) => {
         `
         title.innerText = `${data.name} - Hadith No ${data.num}`
 
-        if (data.found) {
+        if (data.found == 1) {
             detailHadith.innerHTML = `
             <div>
                 <p id="arabic-hadith">
@@ -35,9 +35,8 @@ const showHadith = (data) => {
                 </p>
             </div>
             `
-        } else {
-
-            const preloader = `
+        }else if(data.found == 0){
+               const preloader = `
             <div class="preloader-data text-center">
                 <div class="lottie-anim"></div>
                 <H3 class="mt-3">Hadith Nomor ${data.num} tidak ditemukan</H3>
@@ -46,9 +45,20 @@ const showHadith = (data) => {
             detailHadith.innerHTML = preloader
 
             showPreloader('not-found.json')
-        }
+        } 
+        
     } catch (e) {
-        return e;
+       
+            const preloader = `
+            <div class="preloader-data text-center">
+                <div class="lottie-anim"></div>
+                <H2 class="mt-3">Anda Sedang Offline</H2>
+            </div>
+            `
+            detailHadith.innerHTML = preloader
+
+            showPreloader('not-found.json')
+            
     }
 }
 
@@ -56,7 +66,7 @@ const showHadith = (data) => {
 // fetch data from API
 const fetchHadith = async () => {
     try {
-        const res = await axios.get('https://api.hadith.sutanlab.id/books/' + hadithId + "/" + page)
+        // const res = await axios.get('https://api.hadith.sutanlab.id/books/' + hadithId + "/" + page)
         console.log(res)
 
         if (res.data.data.contents) {
@@ -77,7 +87,7 @@ const fetchHadith = async () => {
 
 
     } catch (e) {
-        return e
+        
     }
 }
 
