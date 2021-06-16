@@ -14,10 +14,9 @@ const fetchHadithList = async () => {
 }
 
 // show data to page
-const showHadithList = async () => {
+const showHadithList = async (data) => {
     try {
         let el = ''
-        const data = await fetchHadithList()
         data.forEach(data => {
             el += `
             <div class="col-12 col-md-3 my-2">
@@ -46,11 +45,11 @@ const showHadithList = async () => {
 }
 
 //function sort Hadith Number Ascending
-const sortHadithAsc = async () => {
+const sortHadithAsc = (data) => {
     try {
-        let replace = ''
         let dataArray = []
-        const data = await fetchHadithList()
+        let dataUrut = []
+
         data.forEach(data => {
             dataArray.push([data.available, data.name, data.id])
         });
@@ -59,28 +58,27 @@ const sortHadithAsc = async () => {
             return a[0] - b[0];
         });
 
-        for (let i = 0; i <= 8; i++) {
-            replace += `
-            <div class="col-2 offset-1 ">
-                <a href="hadith.html?${sortedArrayAsc[i][2]}|1">
-                    <button id="btnShowHadith">
-                        ${sortedArrayAsc[i][1]} Dengan Jumlah hadist ${sortedArrayAsc[i][0]}
-                    </button>
-                </a>
-            </div>`
-        }
-        bodyHadith.innerHTML = replace
+        sortedArrayAsc.forEach(data => {
+            dataUrut.push({
+                'available': data[0],
+                'name': data[1],
+                'id': data[2],
+            })
+        })
+
+        showHadithList(dataUrut)
+
     } catch (e) {
         return e
     }
 }
 
 //function sort Hadith Number Descending
-const sortHadithDesc = async () => {
+const sortHadithDesc = (data) => {
     try {
-        let replace = ''
         let dataArray = []
-        const data = await fetchHadithList()
+        let dataUrut = []
+
         data.forEach(data => {
             dataArray.push([data.available, data.name, data.id])
         });
@@ -89,17 +87,15 @@ const sortHadithDesc = async () => {
             return b[0] - a[0];
         });
 
-        for (let i = 0; i <= 8; i++) {
-            replace += `
-            <div class="col-2 offset-1 ">
-                <a href="hadith.html?${sortedArrayDesc[i][2]}|1">
-                    <button id="btnShowHadith">
-                        ${sortedArrayDesc[i][1]} Dengan Jumlah hadist ${sortedArrayDesc[i][0]}
-                    </button>
-                </a>
-            </div>`
-        }
-        bodyHadith.innerHTML = replace
+        sortedArrayDesc.forEach(data => {
+            dataUrut.push({
+                'available': data[0],
+                'name': data[1],
+                'id': data[2],
+            })
+        })
+
+        showHadithList(dataUrut)
     } catch (e) {
         return e
     }
@@ -107,81 +103,75 @@ const sortHadithDesc = async () => {
 }
 
 //function sort Hadith Name Ascending
-const sortNamaHadithAsc = async () => {
+const sortNamaHadithAsc = (data) => {
     try {
-        let replace = ''
         let dataArray = []
-        const data = await fetchHadithList()
+        let dataUrut = []
+        
         data.forEach(data => {
-            dataArray.push([data.name, data.available, data.id])
+            dataArray.push([data.available, data.name, data.id])
         });
-
 
         dataArray.sort(function (a, b) {
-            return a === b ? 0 : a < b ? -1 : 1;
+            return a[1] === b[1] ? 0 : a[1] < b[1] ? -1 : 1;
         });
 
-        for (let i = 0; i <= 8; i++) {
-            replace += `
-            <div class="col-2 offset-1 ">
-                <a href="hadith.html?${dataArray[i][2]}|1">
-                    <button id="btnShowHadith">
-                        ${dataArray[i][0]} Dengan Jumlah hadist ${dataArray[i][1]}
-                    </button>
-                </a>
-            </div>`
-        }
-        bodyHadith.innerHTML = replace
+        dataArray.forEach(data => {
+            dataUrut.push({
+                'available': data[0],
+                'name': data[1],
+                'id': data[2],
+            })
+        })
+
+        showHadithList(dataUrut)
     } catch (e) {
         return e
     }
 }
 
 //function sort Hadith Nae Descending
-const sortNamaHadithDesc = async () => {
+const sortNamaHadithDesc = (data) => {
     try {
-        let replace = ''
         let dataArray = []
-        const data = await fetchHadithList()
+        let dataUrut = []
+        
         data.forEach(data => {
-            dataArray.push([data.name, data.available, data.id])
+            dataArray.push([data.available, data.name, data.id])
         });
 
         dataArray.sort(function (a, b) {
-            return b === a ? 0 : b < a ? -1 : 1;
+            return b[1] === a[1] ? 0 : b[1] < a[1] ? -1 : 1;
         });
 
-        for (let i = 0; i <= 8; i++) {
-            replace += `
-            <div class="col-2 offset-1 ">
-                <a href="hadith.html?${dataArray[i][2]}|1">
-                    <button id="btnShowHadith">
-                        ${dataArray[i][0]} Dengan Jumlah hadist ${dataArray[i][1]}
-                    </button>
-                </a>
-            </div>`
-        }
-        bodyHadith.innerHTML = replace
+        dataArray.forEach(data => {
+            dataUrut.push({
+                'available': data[0],
+                'name': data[1],
+                'id': data[2],
+            })
+        })
+
+        showHadithList(dataUrut)
     } catch (e) {
         return e
     }
 }
 
+const filterData = (filterOpt, data) => {
+    if (filterOpt.value == 0) {
+        sortHadithAsc(data)
+    } else if (filterOpt.value == 1) {
+        sortHadithDesc(data)
+    } else if (filterOpt.value == 2) {
+        sortNamaHadithAsc(data)
+    } else if (filterOpt.value == 3) {
+        sortNamaHadithDesc(data)
+    }
+}
 
 
 document.addEventListener('DOMContentLoaded', () => {
-
-    filterHadith.addEventListener('change', (event) => {
-          if(event.target.value == 0){
-            sortHadithAsc()
-          }else if(event.target.value == 1){
-            sortHadithDesc()
-          }else if(event.target.value == 2){
-            sortNamaHadithAsc()
-          }else if(event.target.value == 3){
-            sortNamaHadithDesc()
-          }
-    });
 
     const preloader = `
         <div class="preloader-data text-center">
@@ -193,13 +183,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //showPreloader('loading-data.json')
 
-    setTimeout(() => {
-        fetchHadithList()
-            .then(async res => {
-                showHadithList(res)
-            })
-            .catch(e => console.log(e))
+    let data;
+
+    setTimeout(async () => {
+        data = await fetchHadithList()
+        filterData(filterHadith, data)
     }, 1000);
+
+    filterHadith.addEventListener('change', (event) => {
+        filterData(filterHadith, data)
+    });
 
     darkModeSwitch.addEventListener('click', () => {
         if (darkModeSwitch.checked) {
