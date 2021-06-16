@@ -1,6 +1,7 @@
 let bodyHadith = document.querySelector('.body-hadith');
 let sortData = document.querySelector('.form-select');
 let darkModeSwitch = document.querySelector('#dark-mode-switch')
+let filterHadith = document.querySelector('#filter-hadith')
 
 // fetch hadiths list from API
 const fetchHadithList = async () => {
@@ -49,7 +50,7 @@ const sortHadithAsc = async () => {
     try {
         let replace = ''
         let dataArray = []
-        const data = await fetchHadithsList()
+        const data = await fetchHadithList()
         data.forEach(data => {
             dataArray.push([data.available, data.name, data.id])
         });
@@ -79,7 +80,7 @@ const sortHadithDesc = async () => {
     try {
         let replace = ''
         let dataArray = []
-        const data = await fetchHadithsList()
+        const data = await fetchHadithList()
         data.forEach(data => {
             dataArray.push([data.available, data.name, data.id])
         });
@@ -110,7 +111,7 @@ const sortNamaHadithAsc = async () => {
     try {
         let replace = ''
         let dataArray = []
-        const data = await fetchHadithsList()
+        const data = await fetchHadithList()
         data.forEach(data => {
             dataArray.push([data.name, data.available, data.id])
         });
@@ -141,7 +142,7 @@ const sortNamaHadithDesc = async () => {
     try {
         let replace = ''
         let dataArray = []
-        const data = await fetchHadithsList()
+        const data = await fetchHadithList()
         data.forEach(data => {
             dataArray.push([data.name, data.available, data.id])
         });
@@ -170,31 +171,18 @@ const sortNamaHadithDesc = async () => {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    //   sortData.addEventListener('change', (event) => {
-    //       if(event.target.value == "sortDataAsc"){
-    //         sortHadithAsc()
-    //       }else if(event.target.value == "sortDataDesc"){
-    //         sortHadithDesc()
-    //       }else if(event.target.value == "sortNamaAsc"){
-    //         sortNamaHadithAsc()
-    //       }else if(event.target.value == "sortNamaDesc"){
-    //         sortNamaHadithDesc()
-    //       }
-    // });
+    filterHadith.addEventListener('change', (event) => {
+          if(event.target.value == 0){
+            sortHadithAsc()
+          }else if(event.target.value == 1){
+            sortHadithDesc()
+          }else if(event.target.value == 2){
+            sortNamaHadithAsc()
+          }else if(event.target.value == 3){
+            sortNamaHadithDesc()
+          }
+    });
 
-    darkModeSwitch.addEventListener('click', () => {
-        if (darkModeSwitch.checked) {
-            turnOnDarkMode()
-            localStorage.setItem('dark-mode', true)
-        } else {
-            turnOffDarkMode()
-            localStorage.setItem('dark-mode', false)
-        }
-    })
-
-})
-
-window.addEventListener('load', async () => {
     const preloader = `
         <div class="preloader-data text-center">
             <div class="lottie-anim"></div>
@@ -213,6 +201,19 @@ window.addEventListener('load', async () => {
             .catch(e => console.log(e))
     }, 1000);
 
+    darkModeSwitch.addEventListener('click', () => {
+        if (darkModeSwitch.checked) {
+            turnOnDarkMode()
+            localStorage.setItem('dark-mode', true)
+        } else {
+            turnOffDarkMode()
+            localStorage.setItem('dark-mode', false)
+        }
+    })
+
+})
+
+window.addEventListener('load', async () => {
     let darkModeState = localStorage.getItem('dark-mode')
 
     if (darkModeState == 'true') {

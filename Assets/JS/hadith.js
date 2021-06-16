@@ -136,3 +136,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     nextBtnHadith.addEventListener('click', nextHadith)
     backBtnHadith.addEventListener('click', backHadith)
 })
+
+window.addEventListener('load', async () => {
+    let darkModeState = localStorage.getItem('dark-mode')
+
+    if (darkModeState == 'true') {
+        turnOnDarkMode()
+        darkModeSwitch.checked = true
+    } else {
+        turnOffDarkMode()
+        darkModeSwitch.checked = false
+    }
+})
+
