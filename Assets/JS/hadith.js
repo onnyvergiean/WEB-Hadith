@@ -14,7 +14,7 @@ const nomorHadith = document.querySelector('#no-hadith')
 
 
 // show data to page
-const showHadith = async (data) => {
+const showHadith = (data) => {
     try {
 
         namaHadith.innerHTML = data.name
@@ -71,7 +71,7 @@ const fetchHadith = async () => {
 
 
 // next button, increase page by 1
-const nextHadith = async () => {
+const nextHadith = () => {
     try {
         page += 1;
         const nextHadithContent = window.history.replaceState(null, null, "?" + hadithId + "|" + page);
@@ -83,7 +83,7 @@ const nextHadith = async () => {
 }
 
 // get hadith by number
-const getSpecificHadith = async (num) => {
+const getSpecificHadith = (num) => {
     try {
         const data = window.history.replaceState(null, null, "?" + hadithId + "|" + num);
         location.reload();
@@ -96,7 +96,7 @@ const getSpecificHadith = async (num) => {
 
 
 // back button, decrease page by 1
-const backHadith = async () => {
+const backHadith = () => {
     try {
         page -= 1;
         const backHadithContent = window.history.replaceState(null, null, "?" + hadithId + "|" + page);
@@ -110,7 +110,6 @@ const backHadith = async () => {
 
 
 document.addEventListener('DOMContentLoaded', async () => {
-
 
     // disable back button if current page is 1
     if (page <= 1) {
