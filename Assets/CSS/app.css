@@ -167,7 +167,7 @@ a:hover {
 
 #filter-hadith option {
   color: var(--text-color);
-  background-color: transparent;
+  background-color: var(--bg-color);
 }
 
 .preloader-data{
