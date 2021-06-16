@@ -99,6 +99,7 @@ a:hover {
 }
 
 #arabic-hadith {
+  font-family: serif;
   color: var(--text-color);
   font-size: 30px;
   margin: 0px 0px 16px;
@@ -167,5 +168,11 @@ a:hover {
 #filter-hadith option {
   color: var(--text-color);
   background-color: transparent;
+}
+
+.preloader-data{
+  margin: 30px auto;
+  width: 450px;
+  align-self: center;
 }
 

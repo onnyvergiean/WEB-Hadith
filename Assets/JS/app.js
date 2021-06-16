@@ -40,7 +40,15 @@ const showHadithList = async (data) => {
 
         bodyHadith.innerHTML = el
     } catch (e) {
-        return 'Maaf terjadi kesalahan ketika mengambil data. Silahkan refresh halaman kembali'
+        const preloader = `
+        <div class="preloader-data text-center">
+            <div class="lottie-anim"></div>
+            <H3 class="mt-3">Maaf terjadi kesalahan ketika mengambil data. Silahkan refresh kembali</H3>
+        </div>
+        `
+        bodyHadith.innerHTML = preloader
+
+        showPreloader('loading-failed.json')
     }
 }
 
@@ -107,7 +115,7 @@ const sortNamaHadithAsc = (data) => {
     try {
         let dataArray = []
         let dataUrut = []
-        
+
         data.forEach(data => {
             dataArray.push([data.available, data.name, data.id])
         });
@@ -135,7 +143,7 @@ const sortNamaHadithDesc = (data) => {
     try {
         let dataArray = []
         let dataUrut = []
-        
+
         data.forEach(data => {
             dataArray.push([data.available, data.name, data.id])
         });
@@ -176,12 +184,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const preloader = `
         <div class="preloader-data text-center">
             <div class="lottie-anim"></div>
-            <H3>Memuat Data</H3>
+            <H3 class="mt-3">Sedang Memuat Data...</H3>
         </div>
     `
     bodyHadith.innerHTML = preloader
 
-    //showPreloader('loading-data.json')
+    showPreloader('loading-data.json')
 
     let data;
 

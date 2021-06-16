@@ -11,20 +11,18 @@ const namaHadith = document.querySelector('#nama-hadith')
 const nomorHadith = document.querySelector('#no-hadith')
 
 
-
-
 // show data to page
 const showHadith = (data) => {
     try {
 
         namaHadith.innerHTML = data.name
         nomorHadith.innerHTML = `
-            <h5>Nomor Hadith</h5>
+            <h5>Hadith Nomor</h5>
             <h3>${data.num}</h3>
         `
 
-        detailHadith.innerHTML = (data.found) ?
-        `
+        if (data.found) {
+            detailHadith.innerHTML = `
             <div>
                 <p id="arabic-hadith">
                     ${data.arab}
@@ -34,7 +32,19 @@ const showHadith = (data) => {
                     ${data.idn}
                 </p>
             </div>
-        ` : `<h1>Hadith ${data.name} nomor ${data.num} tidak ditemukan</h1>` 
+            `
+        } else {
+
+            const preloader = `
+            <div class="preloader-data text-center">
+                <div class="lottie-anim"></div>
+                <H3 class="mt-3">Hadith Nomor ${data.num} tidak ditemukan</H3>
+            </div>
+            `
+            detailHadith.innerHTML = preloader
+
+            showPreloader('not-found.json')
+        }
     } catch (e) {
         return e;
     }
@@ -47,7 +57,7 @@ const fetchHadith = async () => {
         const res = await axios.get('https://api.hadith.sutanlab.id/books/' + hadithId + "/" + page)
         console.log(res)
 
-        if(res.data.data.contents) {
+        if (res.data.data.contents) {
             return {
                 "found": 1,
                 "arab": res.data.data.contents.arab,
@@ -60,9 +70,9 @@ const fetchHadith = async () => {
         return {
             "found": 0,
             "name": res.data.data.name,
-            "num" : page
+            "num": page
         }
-        
+
 
     } catch (e) {
         return e
@@ -117,9 +127,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // show user feedback to page
-    detailHadith.innerHTML = `
-        <h1>Loading Data...</h1>
+    const preloader = `
+        <div class="preloader-data text-center">
+            <div class="lottie-anim"></div>
+            <H3 class="mt-3">Sedang Memuat Data...</H3>
+        </div>
     `
+    detailHadith.innerHTML = preloader
+
+    showPreloader('loading-data.json')
     setTimeout(async () => {
         const data = await fetchHadith()
         showHadith(data)
@@ -141,10 +157,8 @@ window.addEventListener('load', async () => {
 
     if (darkModeState == 'true') {
         turnOnDarkMode()
-        darkModeSwitch.checked = true
     } else {
         turnOffDarkMode()
-        darkModeSwitch.checked = false
     }
 })
 
