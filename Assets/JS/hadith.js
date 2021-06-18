@@ -3,13 +3,13 @@ let splitter = param.split("|");
 let hadithId = splitter[0];
 let page = parseInt(splitter[1]);
 
-let nomorHadithInput = document.querySelector('#nomor-hadith')
 const detailHadith = document.querySelector('.detail-hadith');
 const nextBtnHadith = document.querySelector('#nextHadith');
 const backBtnHadith = document.querySelector('#backHadith');
 const namaHadith = document.querySelector('#nama-hadith')
 const nomorHadith = document.querySelector('#no-hadith')
 const title = document.querySelector('title')
+let inputPage = document.querySelector('#input-page')
 
 
 // show data to page
@@ -143,12 +143,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         showHadith(data)
     }, 1000);
 
-    // nomorHadithInput.addEventListener('change', async () => {
-    //     const nomorHadith = nomorHadithInput.value
-    //     const data = await getSpecificHadith(nomorHadith)
+    inputPage.addEventListener('change', async (e) => {
+        const page = inputPage.value
+        
+        console.log(page)
+        const data = await getSpecificHadith(page)
 
-    //     showHadith(data)
-    // })
+        showHadith(data)
+    })
 
     nextBtnHadith.addEventListener('click', nextHadith)
     backBtnHadith.addEventListener('click', backHadith)
